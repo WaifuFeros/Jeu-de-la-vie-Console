@@ -29,7 +29,16 @@ namespace Jeu_de_la_vie
 
         public int GetNbAliveNeighboor(int i, int j)
         {
-            throw new NotImplementedException();
+            var coords = GetCoordsNeighboors(i, j);
+
+            int aliveCount = 0;
+            foreach (var coord in coords)
+            {
+                if (TabCells[coord.X, coord.Y].IsAlive)
+                    aliveCount++; ;
+            }
+
+            return aliveCount;
         }
 
         public List<Coords> GetCoordsNeighboors(int i, int j)
