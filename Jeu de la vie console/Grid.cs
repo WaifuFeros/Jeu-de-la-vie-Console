@@ -83,7 +83,28 @@ namespace Jeu_de_la_vie
 
         public void UpdateGrid()
         {
+            // Change next state
+            for (int x = 0; x < N; x++)
+            {
+                for (int y = 0; y < N; y++)
+                {
+                    var currentCell = TabCells[x, y];
+                    int aliveNeighboors = GetNbAliveNeighboor(x, y);
+                    if (!currentCell.IsAlive && aliveNeighboors == 3)
+                        currentCell.ComeAlive();
+                    else if (!(currentCell.IsAlive && (aliveNeighboors == 2 || aliveNeighboors == 3)))
+                        currentCell.PassAway();
+                }
+            }
 
+            // Update state
+            for (int x = 0; x < N; x++)
+            {
+                for (int y = 0; y < N; y++)
+                {
+                    TabCells[x, y].Update();
+                }
+            }
         }
     }
 }
