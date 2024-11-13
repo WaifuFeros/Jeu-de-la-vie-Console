@@ -12,6 +12,13 @@ namespace Jeu_de_la_vie
 
         public Cell[,] TabCells;
 
+        private const string GRID_HORIZONTAL_EDGE_TILING = "---+";
+        private const string GRID_VERTICAL_EDGE_SEPARATOR = " | ";
+        private const string ALIVE_CELL = "X";
+        private const string DEAD_CELL = " ";
+
+        private string _gridHorizontalEdge;
+
         public Grid(int nbCells, List<Coords> AliveCellsCoords)
         {
             N = nbCells;
@@ -25,6 +32,13 @@ namespace Jeu_de_la_vie
                     TabCells[i, j] = new Cell(isAlive);
                 }
             }
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("+");
+            for (int i = 0; i < N; i++)
+                sb.Append(GRID_HORIZONTAL_EDGE_TILING);
+
+            _gridHorizontalEdge = sb.ToString();
         }
 
         public int GetNbAliveNeighboor(int i, int j)
@@ -78,7 +92,23 @@ namespace Jeu_de_la_vie
 
         public void DisplayGrid()
         {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(_gridHorizontalEdge);
+            for (int x = 0; x < N; x++)
+            {
+                sb.Append("| ");
 
+                for(int y = 0; y < N; y++)
+                {
+                    sb.Append(TabCells[x, y].IsAlive ? ALIVE_CELL : DEAD_CELL);
+                    sb.Append(GRID_VERTICAL_EDGE_SEPARATOR);
+                }
+                sb.AppendLine();
+
+                sb.AppendLine(_gridHorizontalEdge);
+            }
+
+            Console.WriteLine(sb.ToString());
         }
 
         public void UpdateGrid()
