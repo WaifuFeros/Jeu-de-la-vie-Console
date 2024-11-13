@@ -62,7 +62,18 @@ namespace Jeu_de_la_vie
 
         public List<Coords> GetCoordsCellsAlive()
         {
-            throw new NotImplementedException();
+            var coords = new List<Coords>();
+
+            for (int x = 0; x < N; x++)
+            {
+                for (int y = 0; y < N; y++)
+                {
+                    if (TabCells[x, y].IsAlive)
+                        coords.Add(new Coords(x, y));
+                }
+            }
+
+            return coords;
         }
 
         public void DisplayGrid()
