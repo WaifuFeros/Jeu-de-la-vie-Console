@@ -14,7 +14,17 @@ namespace Jeu_de_la_vie
 
         public Grid(int nbCells, List<Coords> AliveCellsCoords)
         {
+            N = nbCells;
+            TabCells = new Cell[N, N];
 
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    bool isAlive = AliveCellsCoords.Contains(new Coords(i, j));
+                    TabCells[i, j] = new Cell(isAlive);
+                }
+            }
         }
 
         public int GetNbAliveNeighboor(int i, int j)
