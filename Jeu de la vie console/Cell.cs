@@ -14,7 +14,7 @@ namespace Jeu_de_la_vie
 
         public Cell(bool state)
         {
-
+            IsAlive = state;
         }
 
         public void ComeAlive()
@@ -24,12 +24,12 @@ namespace Jeu_de_la_vie
 
         public void PassAway()
         {
-
+            NextState = false;
         }
 
         public void Update()
         {
-
+            IsAlive = NextState;
         }
     }
 }
