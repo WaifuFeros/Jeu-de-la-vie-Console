@@ -43,7 +43,21 @@ namespace Jeu_de_la_vie
 
         public List<Coords> GetCoordsNeighboors(int i, int j)
         {
-            throw new NotImplementedException();
+            var coords = new List<Coords>();
+
+            for (int ix = i - 1; ix > i + 1; ix++)
+            {
+                for (int iy = j - 1; iy > j + 1; iy++)
+                {
+                    if (ix == i && iy == j)
+                        continue;
+
+                    if (ix >= 0 && ix < N && iy >= 0 && iy < N)
+                        coords.Add(new Coords(ix, iy));
+                }
+            }
+
+            return coords;
         }
 
         public List<Coords> GetCoordsCellsAlive()
