@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,8 +50,10 @@ namespace Jeu_de_la_vie
             foreach (var coord in coords)
             {
                 if (TabCells[coord.X, coord.Y].IsAlive)
-                    aliveCount++; ;
+                    aliveCount++;
             }
+
+            Console.Write($"{aliveCount} | ");
 
             return aliveCount;
         }
@@ -59,9 +62,9 @@ namespace Jeu_de_la_vie
         {
             var coords = new List<Coords>();
 
-            for (int ix = i - 1; ix > i + 1; ix++)
+            for (int ix = i - 1; ix < i + 2; ix++)
             {
-                for (int iy = j - 1; iy > j + 1; iy++)
+                for (int iy = j - 1; iy < j + 2; iy++)
                 {
                     if (ix == i && iy == j)
                         continue;
@@ -120,6 +123,16 @@ namespace Jeu_de_la_vie
                 {
                     var currentCell = TabCells[x, y];
                     int aliveNeighboors = GetNbAliveNeighboor(x, y);
+                    //if (currentCell.IsAlive)
+                    //{
+                    //    if (aliveNeighboors < 2 || aliveNeighboors > 3)
+                    //        currentCell.PassAway();
+                    //}
+                    //else
+                    //{
+                    //    if (aliveNeighboors == 3)
+                    //        currentCell.ComeAlive();
+                    //}
                     if (!currentCell.IsAlive && aliveNeighboors == 3)
                         currentCell.ComeAlive();
                     else if (!(currentCell.IsAlive && (aliveNeighboors == 2 || aliveNeighboors == 3)))

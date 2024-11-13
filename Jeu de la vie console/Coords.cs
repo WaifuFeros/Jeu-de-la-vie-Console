@@ -19,7 +19,7 @@ namespace Jeu_de_la_vie
 
         public override string ToString()
         {
-            return base.ToString();
+            return $"({X},{Y})";
         }
     }
 }

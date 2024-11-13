@@ -15,6 +15,7 @@ namespace Jeu_de_la_vie
         public Cell(bool state)
         {
             IsAlive = state;
+            NextState = state;
         }
 
         public void ComeAlive()
